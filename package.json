@@ -1,0 +1,75 @@
+{
+    "name": "golang-create-method",
+    "displayName": "golang-create-method",
+    "description": "creates a method and addes metrics and logging",
+    "version": "0.0.1",
+    "publisher": "thinkovator",
+    "engines": {
+        "vscode": "^1.13.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:golang.createNewMethod"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "configuration": {
+            "title": "golange New Feature Extension Configuration",
+            "type": "object",
+            "properties": {
+                "newMethod.rootDirectory": {
+                    "type": "string",
+                    "default": "~/go/src/thinkovator.com",
+                    "description": "Only used when 'relativeTo' is set to 'root'. Used as the root for creating new files."
+                },
+                "newMethod.templateDirectory": {
+                    "type": "string",
+                    "default": "template/method",
+                    "description": "Name of the directory containing template files."
+                },
+                "newMethod.templateNames": {
+                    "type": "array",
+                    "default": "instrumenting.go,logging.go",
+                    "description": "Name of the files to be created by template."
+                },
+                "newMethod.methodTemplate": {
+                    "type": "array",
+                    "default": "service.go.tmpl",
+                    "description": "Name of the template to create a method."
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "golang.createNewMethod",
+                "title": "golang: New Method"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "golang.createNewMethod",
+                "key": "ctrl+shift+m",
+                "mac": "cmd+shift+m"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    },
+    "dependencies": {
+        "@types/q": "^1.0.0",
+        "q": "^1.4.1"
+    }
+}
