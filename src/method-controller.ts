@@ -207,7 +207,13 @@ export class MethodController {
 
     let destructedSignature = methodSignature.split(')');
     if(destructedSignature.length > 1) {
-      let returnTypes = destructedSignature[1].split('(')[1].split(')')[0].split(',');
+      let returnTypes = [];
+      if(destructedSignature[1].indexOf('(') > -1) {
+        returnTypes = destructedSignature[1].split('(')[1].split(')')[0].split(',');
+      }else{
+        returnTypes.push(destructedSignature[1]);
+      }
+
       let namedReturnTypes = [];
       for (var i = 0; i < returnTypes.length; i++) {
         var element = returnTypes[i].trim();
